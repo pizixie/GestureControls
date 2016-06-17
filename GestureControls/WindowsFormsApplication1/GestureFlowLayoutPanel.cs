@@ -319,12 +319,26 @@ namespace WindowsFormsApplication1
                             var offset_x = _ptSecond.X - _ptFirst.X;
                             var offset_y = _ptSecond.Y - _ptFirst.Y;
 
-                            
+
                             var y = Math.Abs(this.AutoScrollPosition.Y);
 
                             y += offset_y;
 
                             this.AutoScrollPosition = new Point(0, y);
+
+                            //var v = this.VerticalScroll.Value;
+
+                            //v += offset_y;
+
+                            //if (v > this.VerticalScroll.Maximum)
+                            //    v = this.VerticalScroll.Maximum;
+
+                            //if (v < this.VerticalScroll.Minimum)
+                            //    v = this.VerticalScroll.Minimum;
+
+                            //this.VerticalScroll.Value = v;
+
+
 
                             //-----------
 

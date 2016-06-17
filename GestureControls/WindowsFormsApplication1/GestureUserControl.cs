@@ -301,25 +301,8 @@ namespace WindowsFormsApplication1
                             var offset_x = _ptSecond.X - _ptFirst.X;
                             var offset_y = _ptSecond.Y - _ptFirst.Y;
 
-                            //MessageBox.Show(offset_x + ":" + offset_y);
-
-                            var max = ((Panel)Parent).VerticalScroll.Maximum;
-                            var min = ((Panel)Parent).VerticalScroll.Minimum;
-
-                            var v = ((Panel)Parent).VerticalScroll.Value;
-
-                            var result = v + offset_y;
-
-                            
-
-
-                            if (result > max)
-                                result = max;
-
-                            if (result < min)
-                                result = min;
-
-                            ((Panel)Parent).VerticalScroll.Value = result;
+                            var ea = new GestureEventArgs(offset_x, offset_y, GestureId.GID_PAN);
+                            this.OnGesture(ea);
 
                             //-----------
 
@@ -381,5 +364,16 @@ namespace WindowsFormsApplication1
 
             return true;
         }
+
+        protected void OnGesture(GestureEventArgs e)
+        {
+            var temp = Gesture;
+            if (temp != null)
+            {
+                temp(this, e);
+            }
+        }
+
+        public event EventHandler<GestureEventArgs> Gesture;
     }
 }
